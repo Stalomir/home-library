@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Szczegóły todo</title>
+    </head>
+    <body>
+        <h2> Zmień: </h2>
+        <form method="POST" action="/books/{{ book_id }}/">
+            {{ form.hidden_tag() }}
+            <table>
+                {% for field in form if field.widget.input_type != 'hidden' %}
+                    <tr>
+                        <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input type="submit" name="action" value="Update">
+        </form>
+        <h2> Usuń: </h2>
+        <form method="POST" action="/books/{{ book_id }}/">
+            <h5>W celu usunięcia pozycji naciśnij przycisk "Remove"</h5>
+            <input type="submit" name="action" value="Remove">
+        </form>
+    </body>
+</html>

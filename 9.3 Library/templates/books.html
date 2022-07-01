@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista pozycji w domowej bibliotece</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+            <div id="parent">
+                <div id="left"><h2>Lista dostępnych pozycji</h2></div>
+                <div id="right">Sortuj wg:
+                    <form method="POST" action="/books/">
+                        <select name="label" id="label">
+                            {% for field in form if field.widget.input_type != 'hidden' %}
+                                <option value={{field.id}}>{{field.label}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" name="action" value="Sort">
+                    </form>
+                </div>
+            </div>
+        </header>
+        <table>
+            <thead>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Rok wydania</th>
+                <th>Gatunek</th>
+                <th>liczba stron</th>
+            </thead>
+        {% for book in books %}
+            <tr>
+                <td><a href="/books/{{ loop.index }}">{{ book.title }}</a></td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.year }}</td>
+                <td>{{ book.genre }}</td>
+                <td>{{ book.pages }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <div>
+            <h2>Dodaj nową pozycję</h2>
+            <form method="POST" action="/books/">
+                {{ form.hidden_tag() }}
+                <table>
+                    {% for field in form if field.widget.input_type != 'hidden' %}
+                        <tr>
+                            <th> {{ field.label }} {%if field.flags.required %}*{% endif %}</th>
+                            <td> {{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <p>* Pole wymagane</p>
+                <input type="submit" name='action' value="Dodaj">
+            </form>
+        </div>
+    </body>
+</html>

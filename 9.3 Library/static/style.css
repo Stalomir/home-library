@@ -1,0 +1,26 @@
+#parent {
+    display: flex;
+}
+#left {
+    float: left;
+    width: 300px;
+    text-align: center;
+    vertical-align: center;
+}
+#right {
+    float: right;
+    width: 200px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px
+}
+
+
+table, th, tr, td {
+    border: 1px solid;
+    border-collapse:collapse;
+    padding: 3px
+}
+
+
+

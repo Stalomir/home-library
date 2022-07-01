@@ -1,0 +1,4 @@
+{
+    "shs.serverPort": 5000,
+    "shs.mainFile": "library.py"
+}

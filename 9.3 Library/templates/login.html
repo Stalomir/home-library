@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login Form with Flask WTF</title>
+    </head>
+    <body>
+        {% if error %}
+        <div> {{error}} </div>
+        {% endif %}
+        <form method="post" action="/login/">
+            <div>
+               {{ form.csrf_token }}
+               {{ form.email.label }}
+               {{ form.email }}
+               {{ form.password.label }}
+               {{ form.password }}
+                <input type="submit" value="Go">
+            </div>
+        </form>
+    </body>
+</html>
